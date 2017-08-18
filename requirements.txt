@@ -1,0 +1,2 @@
+# Vanilla Views
+django-vanilla-views==1.0.4

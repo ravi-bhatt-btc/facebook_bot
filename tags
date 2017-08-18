@@ -1,0 +1,50 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLOWED_HOSTS	fb_sample_bot/settings.py	/^ALLOWED_HOSTS = ['92fd7596.ngrok.io']$/;"	kind:variable	line:28
+AUTH_PASSWORD_VALIDATORS	fb_sample_bot/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:88
+BASE_DIR	fb_sample_bot/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:16
+DATABASES	fb_sample_bot/settings.py	/^DATABASES = {$/;"	kind:variable	line:77
+DEBUG	fb_sample_bot/settings.py	/^DEBUG = True$/;"	kind:variable	line:26
+INSTALLED_APPS	fb_sample_bot/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:33
+JokeBotConfig	joke_bot/apps.py	/^class JokeBotConfig(AppConfig):$/;"	kind:class	line:4
+JokeBotView	joke_bot/views.py	/^class JokeBotView(TemplateView):$/;"	kind:class	line:42
+LANGUAGE_CODE	fb_sample_bot/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:107
+MIDDLEWARE	fb_sample_bot/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:43
+ROOT_URLCONF	fb_sample_bot/settings.py	/^ROOT_URLCONF = 'fb_sample_bot.urls'$/;"	kind:variable	line:53
+SECRET_KEY	fb_sample_bot/settings.py	/^SECRET_KEY = '(-@s6x&1s8o%tlujtc+*c*))%!z6aor68z%t4=_%&4+likfyxj'$/;"	kind:variable	line:23
+STATIC_URL	fb_sample_bot/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:121
+TEMPLATES	fb_sample_bot/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:55
+TIME_ZONE	fb_sample_bot/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:109
+USE_I18N	fb_sample_bot/settings.py	/^USE_I18N = True$/;"	kind:variable	line:111
+USE_L10N	fb_sample_bot/settings.py	/^USE_L10N = True$/;"	kind:variable	line:113
+USE_TZ	fb_sample_bot/settings.py	/^USE_TZ = True$/;"	kind:variable	line:115
+WSGI_APPLICATION	fb_sample_bot/settings.py	/^WSGI_APPLICATION = 'fb_sample_bot.wsgi.application'$/;"	kind:variable	line:71
+__init__.py	fb_sample_bot/__init__.py	1;"	kind:file	line:1
+__init__.py	joke_bot/__init__.py	1;"	kind:file	line:1
+__init__.py	joke_bot/migrations/__init__.py	1;"	kind:file	line:1
+__validate_request	joke_bot/views.py	/^    def __validate_request(self):$/;"	kind:member	line:44
+admin.py	joke_bot/admin.py	1;"	kind:file	line:1
+application	fb_sample_bot/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:16
+apps.py	joke_bot/apps.py	1;"	kind:file	line:1
+cars	joke_bot/views.py	/^cars = {$/;"	kind:variable	line:27
+dispatch	joke_bot/views.py	/^    def dispatch(self, request, *args, **kwargs):$/;"	kind:member	line:53
+get	joke_bot/views.py	/^    def get(self, request, *args, **kwargs):$/;"	kind:member	line:56
+manage.py	manage.py	1;"	kind:file	line:1
+models.py	joke_bot/models.py	1;"	kind:file	line:1
+name	joke_bot/apps.py	/^    name = 'joke_bot'$/;"	kind:variable	line:5
+page_access_token	joke_bot/views.py	/^page_access_token = 'EAAE0bSZAeZAp8BAHNZAI9q9Y4vU0aweINMoCfjNQbDJZA3yvG71Y2o2TBHZCZAiGAwvLcXWACRTOUApVgZARi1HpErxR6nRA4W7EYOLwoxAvtoLvACZCmemPpiZAyxmJ4R5FZCoeZChttgsaXOPH0Yk8fPzZBZCHLcZCO5oZCTgeZBIxjrXrFAZDZD'$/;"	kind:variable	line:12
+post	joke_bot/views.py	/^    def post(self, request, *args, **kwargs):$/;"	kind:member	line:59
+post_facebook_message	joke_bot/views.py	/^def post_facebook_message(fbid, received_msg):$/;"	kind:function	line:72
+proverbs	joke_bot/views.py	/^proverbs = {$/;"	kind:variable	line:14
+settings.py	fb_sample_bot/settings.py	1;"	kind:file	line:1
+tests.py	joke_bot/tests.py	1;"	kind:file	line:1
+urlpatterns	fb_sample_bot/urls.py	/^urlpatterns = [$/;"	kind:variable	line:19
+urlpatterns	joke_bot/urls.py	/^urlpatterns = [$/;"	kind:variable	line:4
+urls.py	fb_sample_bot/urls.py	1;"	kind:file	line:1
+urls.py	joke_bot/urls.py	1;"	kind:file	line:1
+views.py	joke_bot/views.py	1;"	kind:file	line:1
+wsgi.py	fb_sample_bot/wsgi.py	1;"	kind:file	line:1
