@@ -1,8 +1,9 @@
+#import code; code.interact(local=dict(globals(), **locals()))
 from django.shortcuts import render
 from vanilla import TemplateView
 from django.http.response import HttpResponse
 # import os
-
+from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import generic
@@ -57,15 +58,27 @@ class JokeBotView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         incoming_messages = json.loads(request.body.decode('utf-8'))
+        print('===============================')
         pprint(incoming_messages)
-        for entry in incoming_messages['entry']:
-            for message in entry['messaging']:
-                if 'message' in message:
-                    pprint(message)
-                    if 'text' in message['message']:
-                        post_facebook_message(message['sender']['id'], message['message']['text'])
+        print('===============================')
+        try:
+            if incoming_messages['entry'][0]['messaging']:
+                if 'message' in incoming_messages['entry'][0]['messaging'][0]:
+                    pprint(incoming_messages['entry'][0]['messaging'][0])
+                    if 'text' in incoming_messages['entry'][0]['messaging'][0]['message']:
+                        post_facebook_message(incoming_messages['entry'][0]['messaging'][0]['sender']['id'], incoming_messages['entry'][0]['messaging'][0]['message']['text'])
                     else:
                         print("Seems non-text message! Can't send back!")
+        except:
+            pass
+        try:
+            if incoming_messages['entry'][0]['changes']:
+                message = incoming_messages['entry'][0]['changes'][0]['value']['message']
+                print('before===========')
+                broadcast_message(message)
+                print('after===========')
+        except Exception as e:
+            print(e)
         return HttpResponse(status=200)
 
 
@@ -73,12 +86,19 @@ def post_facebook_message(fbid, received_msg):
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='+page_access_token
     tokens = re.sub(r"[^a-zA-Z0-9\s]",' ',received_msg).lower().split()
     text = ''
-    print('============')
-    user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid
-    user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':page_access_token}
-    user_details = requests.get(user_details_url, user_details_params).json()
-    pprint(user_details)
-    joke_text = 'Yo '+user_details['first_name']
+    try:
+        user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid
+        user_details_params = {'fields':'first_name,last_name,profile_pic', 'access_token':page_access_token}
+        user_details = requests.get(user_details_url, user_details_params).json()
+        pprint(user_details)
+        joke_text = 'Yo '+user_details['first_name']
+        user,is_created = Users.objects.get_or_create(sender_id = fbid, name = user_details['first_name']+' '+user_details['last_name'])
+        # import code; code.interact(local=dict(globals(), **locals()))
+        if is_created:    
+            joke_text = 'hello '+user_details['first_name']+' please enter your details in following manner: 1. your mail-id 2. your num and we will get back to you with solution.'
+    except Exception as e:
+        print(e)
+        joke_text = 'User'
     pprint(joke_text)
     for token in tokens:
         if token in proverbs:
@@ -90,6 +110,14 @@ def post_facebook_message(fbid, received_msg):
     if not text:
         text = "I didn't get it, please send 'fingures', 'head' for a relevent proverb OR ask about Skoda cars by sending 'fabia', 'rapid', 'yeti'! "
 
-    response_msg = json.dumps({"recipient": {"id": fbid}, "message": {"text": joke_text+' '+text}})
+    response_msg = json.dumps({"recipient": {"id": fbid}, "message": {"text": joke_text}})
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg)
     pprint(status.json())
+
+def broadcast_message(message):
+    post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='+page_access_token
+    sender_ids = Users.objects.values_list('sender_id')
+    for sender_id in sender_ids:
+        response_msg = json.dumps({"recipient": {"id": sender_id[0]}, "message": {"text": message}})
+        status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg)
+        pprint(status.json())
